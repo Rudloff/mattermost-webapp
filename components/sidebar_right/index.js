@@ -8,7 +8,8 @@ import {getChannel} from 'mattermost-redux/selectors/entities/channels';
 import {getPost} from 'mattermost-redux/selectors/entities/posts';
 
 import PostStore from 'stores/post_store';
-import {getPinnedPosts, getFlaggedPosts} from 'actions/views/rhs';
+import {getPinnedPosts, getFlaggedPosts, open as openRhs, closeMenu as closeRhs} from 'actions/views/rhs';
+import {close as closeLhs} from 'actions/views/lhs';
 import {getRhsState, getSelectedPostId, getSelectedChannelId, getPreviousRhsState} from 'selectors/rhs';
 import {RHSStates} from 'utils/constants.jsx';
 
@@ -35,6 +36,7 @@ function mapStateToProps(state) {
     }
 
     return {
+        isOpen: state.views.rhs.isSidebarOpen,
         channel,
         currentUser: getCurrentUser(state),
         postRightVisible: Boolean(getSelectedPostId(state)),
@@ -51,6 +53,9 @@ function mapDispatchToProps(dispatch) {
         actions: bindActionCreators({
             getPinnedPosts,
             getFlaggedPosts,
+            closeLhs,
+            openRhs,
+            closeRhs,
         }, dispatch),
     };
 }

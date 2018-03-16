@@ -104,6 +104,40 @@ function isSearchingPinnedPost(state = false, action) {
     }
 }
 
+function isSidebarOpen(state = false, action) {
+    switch (action.type) {
+    case ActionTypes.UPDATE_RHS_STATE:
+        return Boolean(action.state);
+    case ActionTypes.TOGGLE_RHS_MENU:
+        return false;
+    case ActionTypes.OPEN_RHS_MENU:
+        return false;
+    case ActionTypes.TOGGLE_LHS:
+        return false;
+    case ActionTypes.OPEN_LHS:
+        return false;
+    default:
+        return state;
+    }
+}
+
+function isMenuOpen(state = false, action) {
+    switch (action.type) {
+    case ActionTypes.TOGGLE_RHS_MENU:
+        return !state;
+    case ActionTypes.OPEN_RHS_MENU:
+        return true;
+    case ActionTypes.CLOSE_RHS_MENU:
+        return false;
+    case ActionTypes.TOGGLE_LHS:
+        return false;
+    case ActionTypes.OPEN_LHS:
+        return false;
+    default:
+        return state;
+    }
+}
+
 export default combineReducers({
     selectedPostId,
     selectedChannelId,
@@ -113,4 +147,6 @@ export default combineReducers({
     isSearchingTerm,
     isSearchingFlaggedPost,
     isSearchingPinnedPost,
+    isSidebarOpen,
+    isMenuOpen,
 });

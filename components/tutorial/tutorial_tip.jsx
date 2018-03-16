@@ -55,7 +55,7 @@ export default class TutorialTip extends React.Component {
             trackEvent('tutorial', tag);
         }
 
-        this.closeRightSidebar();
+        // TODO: this.props.actions.closeRhs();
         this.hide();
 
         const step = PreferenceStore.getInt(Preferences.TUTORIAL_STEP, UserStore.getCurrentId(), 0);
@@ -64,15 +64,6 @@ export default class TutorialTip extends React.Component {
             UserStore.getCurrentId(),
             (step + 1).toString()
         );
-    }
-
-    closeRightSidebar() {
-        if (Utils.isMobile()) {
-            setTimeout(() => {
-                document.querySelector('.app__body .inner-wrap').classList.remove('move--left-small');
-                document.querySelector('.app__body .sidebar--menu').classList.remove('move--left');
-            });
-        }
     }
 
     skipTutorial = (e) => {

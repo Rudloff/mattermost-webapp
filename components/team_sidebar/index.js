@@ -16,6 +16,7 @@ function mapStateToProps(state) {
     const enableTeamCreation = config.EnableTeamCreation === 'true';
 
     return {
+        isOpen: state.views.lhs.isOpen,
         experimentalPrimaryTeam,
         enableTeamCreation,
     };

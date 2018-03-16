@@ -5,7 +5,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
 
-import {closeRightHandSide, updateRhsState, showPinnedPosts} from 'actions/views/rhs';
+import {
+    closeRightHandSide,
+    updateRhsState,
+    showPinnedPosts,
+    toggleMenu as toggleRhs,
+    closeRightHandSide as closeRhs,
+    closeMenu as closeRhsMenu,
+} from 'actions/views/rhs';
+import {toggle as toggleLhs, close as closeLhs} from 'actions/views/lhs';
 import {getRhsState} from 'selectors/rhs';
 import {RHSStates} from 'utils/constants.jsx';
 
@@ -29,6 +37,11 @@ function mapDispatchToProps(dispatch) {
             closeRightHandSide,
             updateRhsState,
             showPinnedPosts,
+            toggleLhs,
+            closeLhs,
+            toggleRhs,
+            closeRhs,
+            closeRhsMenu,
         }, dispatch),
     };
 }

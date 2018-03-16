@@ -7,7 +7,8 @@ import {getConfig, getLicense} from 'mattermost-redux/selectors/entities/general
 import {getCurrentUserId} from 'mattermost-redux/selectors/entities/users';
 import {getInt} from 'mattermost-redux/selectors/entities/preferences';
 
-import {showMentions, showFlaggedPosts, closeRightHandSide} from 'actions/views/rhs';
+import {showMentions, showFlaggedPosts, closeRightHandSide, open as openRhsMenu, closeMenu as closeRhsMenu} from 'actions/views/rhs';
+import {close as closeLhs} from 'actions/views/lhs';
 import {getRhsState} from 'selectors/rhs';
 import {RHSStates, Preferences, TutorialSteps} from 'utils/constants.jsx';
 import {isMobile} from 'utils/utils.jsx';
@@ -33,6 +34,7 @@ function mapStateToProps(state) {
     const siteName = config.SiteName;
 
     return {
+        isOpen: state.views.rhs.isMenuOpen,
         isMentionSearch: rhsState === RHSStates.MENTION,
         showTutorialTip: enableTutorial && isMobile() && tutorialStep === TutorialSteps.MENU_POPOVER,
         isLicensed,
@@ -53,6 +55,9 @@ function mapDispatchToProps(dispatch) {
             showMentions,
             showFlaggedPosts,
             closeRightHandSide,
+            closeLhs,
+            openRhsMenu,
+            closeRhsMenu,
         }, dispatch),
     };
 }

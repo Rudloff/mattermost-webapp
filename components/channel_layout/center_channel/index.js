@@ -20,6 +20,10 @@ const getLastChannelPath = (state, teamName) => {
 
 const mapStateToProps = (state, ownProps) => ({
     lastChannelPath: `${ownProps.match.url}/channels/${getLastChannelPath(state, ownProps.match.params.team)}`,
+    lhsOpen: state.views.lhs.isOpen,
+    rhsOpen: state.views.rhs.isSidebarOpen,
+    rhsMenuOpen: state.views.rhs.isMenuOpen,
+    webRtcOpen: state.views.webrtc.isOpen,
 });
 
 export default connect(mapStateToProps)(CenterChannel);
